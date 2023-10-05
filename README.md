@@ -5,9 +5,14 @@ amount of clicks done on this link, if it is not, then user will see a shortened
 
 ### How to install
 
-This project uses env variable `BITLY_TOKEN`, which grants access to the service functional.
+This project uses env variable `BITLY_TOKEN`, which grants access to the service functional. So,
+it needs to be defined in `.env` file. The content of `.env` file looks like this:
+```
+BITLY_TOKEN={your token}
+```
+
 The token can be generated at https://app.bitly.com/settings/api/ after registration.
-Token must be in `Bearer {token}` format. It must be stored as header in the URL request. For more information: https://dev.bitly.com/.
+It must be stored as header in the URL request. For more information: https://dev.bitly.com/.
 
 
 Python3 should already be installed. 
