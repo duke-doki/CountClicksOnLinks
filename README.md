@@ -9,10 +9,18 @@ This project uses env variable `BITLY_TOKEN`, which grants access to the service
 The token can be generated at https://app.bitly.com/settings/api/ after registration.
 Token must be in `Bearer {token}` format. It must be stored as header in the URL request. For more information: https://dev.bitly.com/.
 
+
 Python3 should already be installed. 
 Use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```
 pip install -r requirements.txt
+```
+
+### How to run
+
+The following must be typed in the terminal:
+```
+python3 main.py {your link}
 ```
 
 ### Project Goals
