@@ -22,11 +22,8 @@ def shorten_link(token, long_url):
 def count_clicks(token, bitlink):
     bitlink = urlparse(bitlink)
     headers = {'Authorization': f'Bearer {token}'}
-    link = ("https://api-ssl.bitly.com/v4/"
-            "bitlinks/{}{}/clicks/summary").format(
-                bitlink.netloc, 
-                bitlink.path
-            )
+    link = "https://api-ssl.bitly.com/v4/bitlinks/{}{}/clicks/summary"
+    link = link.format(bitlink.netloc, bitlink.path)
     response = requests.get(link, headers=headers)
     response.raise_for_status()
     clicks = response.json()['total_clicks']
@@ -36,8 +33,8 @@ def count_clicks(token, bitlink):
 def is_bitlink(token, url_to_check):
     url_to_check = urlparse(url_to_check)
     headers = {'Authorization': f'Bearer {token}'}
-    link = ("https://api-ssl.bitly.com/"
-        "v4/bitlinks/{}{}").format(url_to_check.netloc, url_to_check.path)
+    link = "https://api-ssl.bitly.com/v4/bitlinks/{}{}"
+    link = link.format(url_to_check.netloc, url_to_check.path)
     response = requests.get(link, headers=headers)
     return response.ok
 
@@ -48,12 +45,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('link', help='Enter a link')
     args = parser.parse_args()
-    link_to_check = args.link
     try:
-        if is_bitlink(bitly_token, link_to_check):
-            print('Количество кликов: ', count_clicks(bitly_token, link_to_check))
+        if is_bitlink(bitly_token, args.link):
+            print('Количество кликов: ', count_clicks(bitly_token, args.link))
         else:
-            print('Битлинк: ', shorten_link(bitly_token, link_to_check))
+            print('Битлинк: ', shorten_link(bitly_token, args.link))
     except requests.exceptions.HTTPError:
         print('Неправильная ссылка')
 
